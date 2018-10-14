@@ -1,0 +1,70 @@
+EXERCICIO:
+Suponha que h seja associado com o registrador
+$s2 e o endereço base do array A armazenado em $s3. Qual o
+código MIPS para o comando A[12] = h + A[8];?
+
+Resposta:
+    lw $t0,32($s3) # $t0 recebe A[8]
+    add $t0,$s2,$t0 # $t0 recebe h + A[8]
+    sw $t0,48($s3) # armazena o resultado em A[12]
+
+
+
+EXERCICIO 2:
+Dê o código assembly do MIPS e o código de máquina para
+o seguinte comando em C: “A[300] = h + A[300];” , onde
+$t1 tem o endereço base do vetor A e $s2 corresponde a h.    
+
+Resposta:
+    lw $t0,1200($t1)  # $t0 recebe A[300]
+    add $t0,$s2,$t0   # $t0 recebe h + A[300]
+    sw $t0,1200($t1)  # A[300] recebe h + A[300]
+
+
+
+EXERCICIO 3:
+SEJA O COMANDO abaixo:
+if ( i == j ) go to L1;
+f = g + h;
+L1: f = f - i;   
+
+em mips ficaria:
+Resposta:
+    beq $s3,$s4,L1          # vá para L1 se i = j
+    add $s0,$s1,$s2         # f = g + h, executado se i != j
+    L1: sub $s0,$s0,$s3     # f = f – i, executado se i = j
+
+
+EXERCICIO4:
+if ( i == j){
+    f = g + h;
+}else{
+    f = g – h;
+}
+
+solução:
+
+    bne $s3,$s4,Else # vá para Else se i != j
+    add $s0,$s1,$s2 # f = g + h, se i != j
+    j Exit # vá para Exit
+Else: sub $s0,$s1,$s2 # f = g – h, se i = j
+Exit:
+
+
+EXERCICIO5:
+while (save[i] == k)
+ i = i + j;
+
+
+resposta:
+
+Loop: 
+    add $t1,$s3,$s3        # $t1 = 2 * i
+    add $t1,$t1,$t1        # $t1 = 4 * i
+    add $t1,$t1,$s6        # $t1 = endereço de save[i]
+    lw $t0,0($t1)          # $t0 recebe save[i]
+    bne $t0,$s5,Exit       # va para Exit se save[i] != k
+    add $s3,$s3,$s4        # i = i + j
+    j Loop
+
+Exit:

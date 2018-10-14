@@ -1,0 +1,57 @@
+Instrução é uma palavra da linguagem de máquina
+ISA (Instruction Set Architecture)
+    – Conjunto de instruções de uma máquina
+
+ISA MIPS
+    - 3 formatos de instruções
+
+    - EM C | EM MIPS
+         a = b + c =>  add a,b,c
+         d = a – c =>  sub d,a,c
+         f = ( g + h ) – ( i + j ) => add t0,g,h
+                                      add t1,i,j
+                                      sub f,t0,t1
+
+No MIPs os operandos das instruções são registradores
+• 32 registradores de 32 bits
+
+
+MOVIMENTAÇÃO DOS DADOS:
+    – lw : instrução de movimentação de dados da memória
+    para registrador ( load word )
+
+    – sw: instrução de movimentação de dados do registrador
+    para a memória ( store word )
+
+
+ORGANIZAÇÃO DA MEMÓRIA
+    No MIPS a memória é organizada em bytes, embora o
+    endereçamento seja em palavras de 4 bytes (32 bits)
+
+
+FORMATOS DE INSTRUÇÕES (3 TIPOS)
+    - Formato das instruções tipo R (R-type) 
+       |op| rs | rt | rd | shamt | funct |
+       op    => operação básica da instrução (opcode)
+       rs    => o primeiro registrador fonte
+       rt    => o segundo registrador fonte
+       rd    => o registrador destino
+       shamt => shift amount, para instruções de deslocamento
+       funct => function. Seleciona variações das operação
+
+    - Formato das Instruções tipo I (I-type)
+        | op rs | rt | endereço |
+
+
+DESVIO CONDICIONAL EM MIPS:
+    • beq registrador1, registrador2, L1
+        – se o valor do registrador1 for igual ao do registrador2
+        o programa será desviado para o label L1
+        ( beq = branch if equal).
+
+    • bne registrador1, registrador2, L1
+        – se o valor do registrador1 não for igual ao do registrador2
+        o programa será desviado para o label L1
+        ( beq = branch if not equal)
+
+        
